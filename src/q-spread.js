@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('$q-spread')
+        .module('$q-spread', [])
         .config(function ($provide) {
 
             $provide.decorator('$q', function ($delegate) {
