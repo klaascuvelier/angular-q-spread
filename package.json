@@ -1,0 +1,29 @@
+{
+  "name": "angular-q-spread",
+  "version": "0.0.1",
+  "description": "Add `spread` method to the promise of $q.all",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp karma"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/showpad/angular-q-spread.git"
+  },
+  "keywords": [
+    "$q",
+    "all",
+    "spread",
+    "angular",
+    "angularjs"
+  ],
+  "author": "Klaas Cuvelier",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/showpad/angular-q-spread/issues"
+  },
+  "homepage": "https://github.com/showpad/angular-q-spread",
+  "devDependencies": {
+
+  }
+}

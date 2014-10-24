@@ -1,0 +1,18 @@
+# Editor/OS
+.DS_Store
+.idea
+.project
+.buildpath
+.settings
+nbproject
+*.sublime-project
+*.sublime-workspace
+
+
+# Dev dependencies
+node_modules
+bower_components
+npm-debug.log
+
+# Test output
+test/test-results.xml
