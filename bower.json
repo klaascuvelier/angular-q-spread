@@ -1,0 +1,25 @@
+{
+  "name": "angular-q-spread",
+  "version": "0.0.1",
+  "homepage": "https://github.com/showpad/angular-q-spread",
+  "authors": [
+    "Klaas Cuvelier <cuvelierklaas@gmail.com>"
+  ],
+  "description": "Add `spread` method to the promise of $q.all",
+  "main": "dist/q-spread.js",
+  "keywords": [
+    "$q",
+    "all",
+    "spread",
+    "angular",
+    "angularjs"
+  ],
+  "license": "MIT",
+  "dependencies": {
+      "angular": ">=1.2"
+  },
+  "devDependencies": {
+      "angular-mocks": ">=1.2",
+      "angular-scenario": ">=1.2"
+  }
+}
