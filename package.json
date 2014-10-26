@@ -1,6 +1,6 @@
 {
   "name": "angular-q-spread",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Add `spread` method to the promise of $q.all",
   "main": "index.js",
   "scripts": {
