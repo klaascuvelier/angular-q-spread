@@ -1,3 +1,4 @@
+[![GitHub version](https://badge.fury.io/gh/showpad%2Fangular-q-spread.svg)](http://badge.fury.io/gh/showpad%2Fangular-q-spread)
 [![Build Status](https://travis-ci.org/showpad/angular-q-spread.svg)](https://travis-ci.org/showpad/angular-q-spread)
 
 angular-q-spread
