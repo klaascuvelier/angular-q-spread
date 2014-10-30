@@ -5,7 +5,7 @@
         .module('$q-spread', [])
         .config(['$provide', function ($provide) {
 
-            $provide.decorator('$q', function ($delegate) {
+            $provide.decorator('$q', ['$delegate', function ($delegate) {
 
                 var originalAll = $delegate.all;
 
@@ -30,6 +30,6 @@
                 };
 
                 return $delegate;
-            });
+            }]);
         }]);
 })(window.angular);
