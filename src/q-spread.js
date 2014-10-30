@@ -3,7 +3,7 @@
 
     angular
         .module('$q-spread', [])
-        .config(function ($provide) {
+        .config(['$provide', function ($provide) {
 
             $provide.decorator('$q', function ($delegate) {
 
@@ -31,5 +31,5 @@
 
                 return $delegate;
             });
-        });
+        }]);
 })(window.angular);
