@@ -23,7 +23,7 @@
                             resolve.apply(void 0, data);
                         }
 
-                        promise.then(spread, reject);
+                        return promise.then(spread, reject);
                     };
 
                     return promise;
