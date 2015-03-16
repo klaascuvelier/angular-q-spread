@@ -20,7 +20,7 @@
                     promise.spread = function (resolve, reject) {
 
                         function spread(data) {
-                            resolve.apply(void 0, data);
+                            return resolve.apply(void 0, data);
                         }
 
                         return promise.then(spread, reject);
