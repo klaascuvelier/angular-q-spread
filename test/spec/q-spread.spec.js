@@ -94,7 +94,7 @@ describe('$q-spread: $q.all', function() {
             expect(allSuccess).toHaveBeenCalledWith(1, 'b');
         });
 
-        xit('should call the defer method with the reason of the failed defer on failure', function () {
+        it('should call the defer method with the reason of the failed defer on failure', function () {
             var defer1 = new $q.defer(),
                 defer2 = new $q.defer();
 
@@ -115,6 +115,31 @@ describe('$q-spread: $q.all', function() {
             $rootScope.$digest();
 
             expect(allFailure).toHaveBeenCalledWith('b');
+        });
+
+        it('should return a value which can be read by the next promise in the chain', function () {
+            var defer1 = new $q.defer(),
+                defer2 = new $q.defer();
+
+            window.spreadResult = function () {};
+
+            spyOn(window, 'spreadResult').and.callThrough();
+
+            $q
+                .all([
+                    defer1.promise,
+                    defer2.promise
+                ])
+                .spread(function(result1, result2) {
+                    return result1 + result2;
+                }).then(spreadResult);
+
+            defer1.resolve(1);
+            defer2.resolve(2);
+
+            $rootScope.$digest();
+
+            expect(spreadResult).toHaveBeenCalledWith(3);
         });
 
     });
