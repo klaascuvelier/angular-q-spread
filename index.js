@@ -1,1 +1,1 @@
-return require('./src/q-spread');
+return require('./dist/q-spread.min.js');

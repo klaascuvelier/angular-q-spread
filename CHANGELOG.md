@@ -1,5 +1,9 @@
 # angular-q-spread changelog
 
+### 1.0.3
+* Make `spread` chainable - @mattlewis92
+* Fix `main` in package.json - @tkambler
+
 ### 1.0.2
 * Make spread chainable
 
