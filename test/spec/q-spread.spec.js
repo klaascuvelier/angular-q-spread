@@ -240,33 +240,54 @@ describe('$q-spread', function() {
     describe('$q.then():', function () {
 
         beforeEach(function () {
-            window.resolveCallback = function () {};
-            window.errorCallback = function () {};
+            window.resolveCallback1 = function (data1, data2) {
+                return data1 + ' ' + data2;
+            };
+
+            window.rejectCallback1 = function () {};
+
+            window.resolveCallback2 = function (data1, data2) {
+                return data1 + '-' + data2;
+            };
+
+            window.rejectCallback2 = function () {};
+
+            window.finalCallback = function () {};
         });
 
         it('should implement spread behaviour', function () {
 
-            spyOn(window, 'resolveCallback');
-            spyOn(window, 'rejectCallback');
+            spyOn(window, 'resolveCallback1').and.callThrough();
+            spyOn(window, 'rejectCallback1').and.callThrough();
+            spyOn(window, 'resolveCallback2').and.callThrough();
+            spyOn(window, 'rejectCallback2').and.callThrough();
+            spyOn(window, 'finalCallback').and.callThrough();
 
-            // Outer promise vars
+
             var result1 = 'result 1';
-            var promise1  = $q.when(result1);
-
-            // Results for $q.al
             var result2 = 'result 2';
             var result3 = 'result 3';
 
-            promise1
-                .then(function () {
-                    return $q.all([ $q.when(result2), $q.when(result3) ]);
+            $q.when(result1)
+                .then(function (firstResult) {
+                    return $q.all([ $q.when(firstResult), $q.when(result2) ]);
                 })
-                .spread(window.resolveCallback, window.rejectCallback);
+                .spread(window.resolveCallback1, window.rejectCallback1)
+                .then(function (secondResult) {
+                    return [secondResult, result3];
+                })
+                .spread(window.resolveCallback2, window.rejectCallback2)
+                .then(finalCallback);
 
             $rootScope.$digest();
 
-            expect(window.rejectCallback).not.toHaveBeenCalled();
-            expect(window.resolveCallback).toHaveBeenCalledWith(result2, result3);
+            expect(window.rejectCallback1).not.toHaveBeenCalled();
+            expect(window.rejectCallback2).not.toHaveBeenCalled();
+
+            expect(window.resolveCallback1).toHaveBeenCalledWith(result1, result2);
+            expect(window.resolveCallback2).toHaveBeenCalledWith(result1 + ' ' + result2, result3);
+
+            expect(window.finalCallback).toHaveBeenCalledWith(result1 + ' ' + result2 + '-' + result3);
         });
 
     });
