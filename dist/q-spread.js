@@ -82,7 +82,8 @@
                         var parameters  = Array.prototype.slice.call(arguments, 0);
                         var result = thenMethod.apply(promise, parameters);
 
-                        result.spread = spread(result);
+                        result.spread   = spread(result);
+                        result.then     = decorateThen(result);
 
                         return result;
                     };
