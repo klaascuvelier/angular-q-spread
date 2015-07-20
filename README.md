@@ -22,26 +22,31 @@ Add `$q-spread` as dependency when creating your angular module.
     angular.module('test', ['$q-spread']);
     
     function TestCtrl($scope, $q, MyService) {
-        $scope.data1 = null;
-        $scope.data2 = null;
-    
-        function dataSuccess(result1, result2) 
+        $scope.name = null;
+
+        function firstCallback(firstname, lastname)
         {
-            $scope.data1 = result1;
-            $scope.data2 = result2;
+            return firstname + ' ' + lastname;
         }
-        
-        function dataFailure(reason) 
+
+        function anotherCallback(fullname)
+        {
+            $scope.name = fullname;
+        }
+
+        function failureCallback(reason)
         {
             alert('Could not load data: ' + reason);
         }
         
         $q
             .all([
-                MyService.getData1(),
-                MyService.getData2()
+                MyService.getFirstname(),
+                MyService.getLastname()
             ])
-            .spread(dataSuccess, dataFailure);
+            .spread(firstCallback)
+            .then(anotherCallback)
+            .catch(failureCallback);
     };
     
     TestCtrl.$inject = ['$scope', '$q', 'MyService'];
