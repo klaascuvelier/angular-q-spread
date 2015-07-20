@@ -21,7 +21,10 @@ gulp.task('karma', function (done) {
             configFile: config.test,
             singleRun: true
         },
-        done
+        function () {
+            done();
+        }
+
     );
 
     server.start();
