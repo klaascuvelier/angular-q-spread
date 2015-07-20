@@ -1,13 +1,13 @@
 'use strict';
 
-var gulp    = require('gulp'),
-    karma   = require('karma').server,
-    jshint  = require('gulp-jshint'),
-    rename  = require('gulp-rename'),
-    uglify  = require('gulp-uglify'),
-    stylish = require('jshint-stylish'),
+var gulp    = require('gulp');
+var karma   = require('karma').server;
+var jshint  = require('gulp-jshint');
+var rename  = require('gulp-rename');
+var uglify  = require('gulp-uglify');
+var stylish = require('jshint-stylish');
 
-    config = {
+var config = {
         test: __dirname + '/test/karma.conf.js',
         src: './src/q-spread.js',
         dist: './dist/'
