@@ -1,7 +1,7 @@
 'use strict';
 
 var gulp    = require('gulp');
-var karma   = require('karma').server;
+var karma   = require('karma');
 var jshint  = require('gulp-jshint');
 var rename  = require('gulp-rename');
 var uglify  = require('gulp-uglify');
@@ -16,10 +16,15 @@ var config = {
 
 // Run karma unit tests
 gulp.task('karma', function (done) {
-    karma.start({
-        configFile: config.test,
-        singleRun: true
-    }, done);
+    var server = new karma.Server(
+        {
+            configFile: config.test,
+            singleRun: true
+        },
+        done
+    );
+
+    server.start();
 });
 
 // JSHint the source files
