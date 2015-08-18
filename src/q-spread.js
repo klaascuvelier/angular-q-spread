@@ -7,26 +7,26 @@
 
             $provide.decorator('$q', ['$delegate', function ($delegate) {
 
-                var originalAll = $delegate.all;
+                var originalDefer = $delegate.defer;
 
-                $delegate.all = function (promises) {
-                    var promise = originalAll(promises);
+                $delegate.defer = function () {
+                    // Get the prototype of the promise
+                    var promiseProto = originalDefer().promise.constructor.prototype;
 
-                    /**
-                     * Spread method, proxies to `then` but spreads the results for the resolve callback
-                     * @param {Function} resolve
-                     * @param {Function} reject
-                     */
-                    promise.spread = function (resolve, reject) {
+                    // Add the spread method
+                    Object.defineProperty(promiseProto, 'spread', {
+                        value: function (resolve, reject) {
+                            function spread (data) {
+                                return resolve.apply(void 0, data);
+                            }
 
-                        function spread(data) {
-                            return resolve.apply(void 0, data);
-                        }
-
-                        return promise.then(spread, reject);
-                    };
-
-                    return promise;
+                            return this.then(spread, reject);
+                        },
+                        writable: true,
+                        enumerable: false
+                    });
+                    
+                    return originalDefer();
                 };
 
                 return $delegate;
