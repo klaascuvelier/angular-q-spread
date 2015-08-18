@@ -1,5 +1,8 @@
 # angular-q-spread changelog
 
+### 1.1.0
+* Add `spread` on every promise
+
 ### 1.0.4 
 * Use minified version in bower config
 

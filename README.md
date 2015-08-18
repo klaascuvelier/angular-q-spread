@@ -7,10 +7,12 @@
 angular-q-spread
 ================
 
-Add `spread` method to the promise returned by $q.all.
+Add `spread` method to all promises created by the $q service.
 
 `spread` can be used as a replacement for `then`. Similarly, it takes two parameters, a callback when all promises are resolved and a callback for failure.
 The resolve callback is going to be called with the result of the list of promises passed to $q.all as separate parameters instead of one parameters which is an array.
+
+`spread` can be chained onto every promise.
 
 #Compatibility
 This plugin has been tested with Angular 1.2 and 1.3
