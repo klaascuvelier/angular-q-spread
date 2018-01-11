@@ -1,6 +1,6 @@
 {
   "name": "angular-q-spread",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Add `spread` method to the promise of $q.all",
   "main": "index.js",
   "scripts": {
@@ -28,6 +28,7 @@
     "gulp-jshint": "1.11.2",
     "gulp-rename": "1.2.2",
     "gulp-uglify": "1.2.0",
+    "jasmine-core": "^2.8.0",
     "jshint-stylish": "2.0.1",
     "karma": "0.13.2",
     "karma-chrome-launcher": "0.2.0",
