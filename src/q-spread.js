@@ -25,9 +25,12 @@
                         writable: true,
                         enumerable: false
                     });
-                    
+
                     return originalDefer();
                 };
+
+                // Init a defer to prevent issues with `all`, `race`, ...
+                $delegate.defer();
 
                 return $delegate;
             }]);
