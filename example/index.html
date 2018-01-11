@@ -1,0 +1,56 @@
+<!doctype html>
+<html ng-app="ExampleApp">
+    <head>
+        <title>AngularJs Q Spread Example</title>
+    </head>
+
+    <body ng-controller="ExampleController as ctrl">
+        <h1>AngularJS Q Spread Example</h1>
+
+        <ul>
+            <li>Promise 1: {{ctrl.promise1}}</li>
+            <li>Promise 2: {{ctrl.promise2}}</li>
+        </ul>
+
+        <div ng-if="ctrl.result !== null">{{ctrl.result}}</div>
+
+        <script src="../bower_components/angular/angular.js"></script>
+        <script src="../dist/q-spread.js"></script>
+        <script>
+            angular.module('ExampleApp', ['$q-spread'])
+                .controller('ExampleController', ['AsyncService', '$q', function(asyncService, $q) {
+                    this.promise1 = 'loading';
+                    this.promise2 = 'loading';
+                    this.result = null;
+
+                    this.start = function () {
+                        const promise1 = asyncService.asyncMethod1();
+                        const promise2 = asyncService.asyncMethod2();
+
+                        promise1.then(() => { this.promise1 = 'done' });
+                        promise2.then(() => { this.promise2 = 'done' });
+
+                        $q
+                            .all([promise1, promise2])
+                            .spread((result1, result2) => this.result = `Results are in: '${result1}' and '${result2}'`);
+                    };
+
+                    this.start();
+                }])
+                .service('AsyncService', ['$timeout', function($timeout) {
+                    return {
+                        asyncMethod1,
+                        asyncMethod2
+                    };
+
+                    function asyncMethod1() {
+                        return $timeout(() => 'value 1', 500);
+                    }
+
+                    function asyncMethod2() {
+                        return $timeout(() => 'value 2', 1500);
+                    }
+                }]);
+        </script>
+    </body>
+</html>
