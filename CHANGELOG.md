@@ -1,5 +1,8 @@
 # angular-q-spread changelog
 
+### 1.2.0
+* Fix issues with `all`, `race`, ... closes #14
+
 ### 1.1.0
 * Add `spread` on every promise
 
