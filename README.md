@@ -4,6 +4,12 @@
 
 [![Build Status](https://travis-ci.org/showpad/angular-q-spread.svg)](https://travis-ci.org/showpad/angular-q-spread)
 
+# Unmaintained
+
+This library is no longer maintained. Showpad has moved away from AngularJS and does not offer any more support for this library. 
+Feel free to use this library in your applications if needed, but no more changes for this library will be published anymore.
+
+
 angular-q-spread
 ================
 
